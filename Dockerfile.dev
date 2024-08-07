@@ -1,0 +1,15 @@
+# Используйте официальный образ Python 3.10 как базовый
+FROM python:3.10
+
+# Установите рабочую директорию
+WORKDIR /app
+
+# Установите зависимости
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Скопируйте код приложения в контейнер
+COPY . .
+
+# Запустите команду для старта сервера разработки
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
