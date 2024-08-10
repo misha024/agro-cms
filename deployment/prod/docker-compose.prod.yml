@@ -5,9 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    ports:
-      - "8000:8000"
     volumes:
-      - .:/app
+      - ./../..:/app
+    ports:
+      - "80:80"
     environment:
       - DJANGO_SETTINGS_MODULE=main.settings.prod

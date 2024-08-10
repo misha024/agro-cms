@@ -1,7 +1,9 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['server-ip', 'domain.com']
+ALLOWED_HOSTS = ['domain.com']
+CSRF_COOKIE_DOMAIN = 'domain.com'
+
 
 DATABASES = {
     'default': {
@@ -10,7 +12,3 @@ DATABASES = {
     }
 }
 
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
