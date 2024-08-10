@@ -8,6 +8,8 @@ class MainSettings(models.Model):
     site_description = models.CharField('Описание сайта', max_length=250)
     site_domain = models.CharField('Доменное имя сайта', max_length=250, default='localhost')
     index_color = ColorField(default='#91A323')
+    telegram_token = models.CharField('Телеграм токен', max_length=250, blank=True, null=True)
+    telegram_group = models.CharField('Телеграм айди группы', max_length=250, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk and MainSettings.objects.exists():
