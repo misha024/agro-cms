@@ -4,7 +4,7 @@ from pathlib import Path
 from django.template.context_processors import static
 
 SECRET_KEY = 'django-insecure-$v#6&5t+to4pu87r!%lou_av$n$ggyqk@i=4z15g%_ql9oncsu'
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 LANGUAGE_CODE = 'ru'
