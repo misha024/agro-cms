@@ -4,16 +4,43 @@ from django.db import models
 
 
 class MainSettings(models.Model):
-    site_name = models.CharField('Название сайта', max_length=250)
-    site_description = models.CharField('Описание сайта', max_length=250)
-    site_domain = models.CharField('Доменное имя сайта', max_length=250, default='localhost')
+    site_name = models.CharField(
+        verbose_name='Название сайта',
+        max_length=250
+    )
+    site_description = models.CharField(
+        verbose_name='Описание сайта',
+        max_length=250
+    )
+    site_favicon = models.ImageField(
+        verbose_name='Иконка сайта',
+        upload_to='favicons',
+        help_text='ICO, PNG, GIF, JPEG, SVG',
+        null=True, blank=True
+    )
+    site_domain = models.CharField(
+        verbose_name='Доменное имя сайта',
+        max_length=250,
+        default='localhost'
+    )
+
     index_color = ColorField(default='#91A323')
-    telegram_token = models.CharField('Телеграм токен', max_length=250, blank=True, null=True)
-    telegram_group = models.CharField('Телеграм айди группы', max_length=250, blank=True, null=True)
+
+    telegram_token = models.CharField(
+        verbose_name='Телеграм токен',
+        max_length=250,
+        blank=True, null=True
+    )
+    telegram_group = models.CharField(
+        verbose_name='Телеграм айди группы',
+        max_length=250,
+        blank=True, null=True
+    )
 
     def save(self, *args, **kwargs):
         if not self.pk and MainSettings.objects.exists():
             raise ValidationError('Может существовать только одна запись MainSettings')
+
         return super(MainSettings, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -54,8 +81,12 @@ class ProductsCategory(models.Model):
 
 
 class Products(models.Model):
-    category = models.ForeignKey(ProductsCategory, verbose_name='Категория',
-                                 on_delete=models.CASCADE, related_name='product')
+    category = models.ForeignKey(
+        verbose_name='Категория',
+        to=ProductsCategory,
+        on_delete=models.CASCADE,
+        related_name='product'
+    )
     name = models.CharField('Название', max_length=250)
     logo = models.ImageField('Логотип', upload_to='products_logo', help_text='130x130', null=True, blank=True)
 

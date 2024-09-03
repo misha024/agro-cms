@@ -10,7 +10,13 @@
    <title>{{ main_settings.site_name|default_if_none:'Blank name' }}: {{ main_settings.site_description|default_if_none:'Blank description' }}</title>
    <style>:root {--index-color: {{ main_settings.index_color }};}</style>
    <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="shortcut icon" href="{% static 'favicon.png' %}" type="image/x-icon">
+
+   {% if main_settings.site_favicon %}
+   <link rel="shortcut icon" href="media/{{ main_settings.site_favicon }}" type="image/x-icon">
+   {% else %}
+   <link rel="shortcut icon" href="{% static 'default_favicon.png' %}" type="image/x-icon">
+   {% endif %}
+
    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
    <link rel="stylesheet" href="{% static 'styles/swiper.css' %}">
    <link rel="stylesheet" href="{% static 'styles/swiper-bundle.css' %}">
