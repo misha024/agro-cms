@@ -7,7 +7,11 @@ services:
       dockerfile: deployment/prod/Dockerfile.prod
     volumes:
       - ./../..:/app
+      - certificates/etc/letsencrypt:/etc/letsencrypt
+      - certificates/var/lib/letsencrypt:/var/lib/letsencrypt
     ports:
       - "80:80"
+      - "443:443"
     environment:
-      - DJANGO_SETTINGS_MODULE=main.settings.prod
+      - DJANGO_SETTINGS_MODULE>=main.settings.prod
+    restart: always

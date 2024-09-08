@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 ALLOWED_HOSTS = ['domain.com']
-CSRF_COOKIE_DOMAIN = 'domain.com'
+CSRF_TRUSTED_ORIGINS = ['https://domain.com']
 
 
 DATABASES = {
