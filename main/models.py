@@ -88,7 +88,7 @@ class Products(models.Model):
         related_name='product'
     )
     name = models.CharField('Название', max_length=250)
-    logo = models.ImageField('Логотип', upload_to='products_logo', help_text='130x130', null=True, blank=True)
+    logo = models.ImageField('Логотип', upload_to='products_logo', help_text='125x125', null=True, blank=True)
 
     def __str__(self):
         return f"[{self.category.name}] {self.name}"

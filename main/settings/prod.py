@@ -1,8 +1,8 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['domain.com']
-CSRF_COOKIE_DOMAIN = 'domain.com'
+ALLOWED_HOSTS = ['agro-connect.shop']
+CSRF_TRUSTED_ORIGINS = ['https://agro-connect.shop']
 
 
 DATABASES = {

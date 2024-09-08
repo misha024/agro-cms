@@ -42,8 +42,8 @@ body {font-family: "Inter", sans-serif}
         position: absolute;
         bottom: 5px;
         right: 5px;
-        width: 130px;
-        height: 130px;
+        width: 125px;
+        height: 125px;
     }
     & .additional-contacts {
         border-top: 1px solid #c6c6c6;
