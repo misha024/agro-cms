@@ -28,7 +28,12 @@
 
 ## Деплой
 
-Для запуска **AgroCMS** в "боевой готовности" выполните следующий скрипт:
 
+- **1.** В файле **"main/settings/prod.py"** и измените в **ALLOWED_HOSTS** и **CSRF_TRUSTED_ORIGINS** "domain.com" на свой домен
+- **2.** Далее в **"deployment/prod/nginx.conf"** впишите в **server_name** свой домен.
+- **3.** Сгенерируйте сертификаты и перенести их в папку **deployment/prod/certificates**.
+- **4.** Для запуска **AgroCMS** в "боевой готовности" выполните следующий скрипт:
+
+    
     docker-compose -f deployment/dev/docker-compose.prod.yml up --build
 
