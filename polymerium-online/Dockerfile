@@ -19,4 +19,4 @@ RUN echo "0 0 * * * root sleep $((85*24*60*60)) && certbot renew --nginx && ngin
 RUN chmod 0644 /etc/cron.d/certbot-renew
 RUN crontab /etc/cron.d/certbot-renew
 
-CMD ["sh", "-c", "cron && gunicorn --bind 127.0.0.1:8080 main.wsgi:application & nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "cron && gunicorn --bind 127.0.0.1:8002 main.wsgi:application & nginx -g 'daemon off;'"]
