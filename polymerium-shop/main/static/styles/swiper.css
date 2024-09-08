@@ -1,0 +1,8 @@
+.swiper-pagination-bullet {
+    min-width: 10px;
+    min-height: 10px;
+    background-color: white !important;
+    opacity: initial !important;
+    margin: 0 10px !important;
+}
+.swiper-pagination-bullet-active {background: var(--index-color) !important}
