@@ -2,6 +2,8 @@
 # Custom .gitignore
 #
 
+*.sqlite3
+
 .idea/
 .vscode/
 compose/
