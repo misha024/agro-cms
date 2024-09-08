@@ -7,8 +7,8 @@ services:
       dockerfile: deployment/prod/Dockerfile.prod
     volumes:
       - ./../..:/app
-      - /path/to/certificates/etc/letsencrypt:/etc/letsencrypt
-      - /path/to/certificates/var/lib/letsencrypt:/var/lib/letsencrypt
+      - certificates/etc/letsencrypt:/etc/letsencrypt
+      - certificates/var/lib/letsencrypt:/var/lib/letsencrypt
     ports:
       - "80:80"
       - "443:443"
