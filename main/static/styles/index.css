@@ -40,10 +40,10 @@ body {font-family: "Inter", sans-serif}
     }
     & .product-image {
         position: absolute;
-        bottom: 5px;
-        right: 5px;
-        width: 125px;
-        height: 125px;
+        bottom: 0;
+        right: 0;
+        width: 120px;
+        height: 120px;
     }
     & .additional-contacts {
         border-top: 1px solid #c6c6c6;
