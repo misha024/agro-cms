@@ -35,7 +35,7 @@ urlpatterns = [
     path("auth/", include('djoser.urls.authtoken')),
 ]
 
-urlpatterns += [
+urlpatterns += [  # Custom API Handlers
     path('contact-submit/', ContactSubmit.as_view(), name='contact-submit')
 ]
 

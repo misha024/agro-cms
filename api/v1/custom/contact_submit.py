@@ -3,13 +3,18 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.cache import cache
+
+from api.utils.get_ip_location import get_ip_location
 from main.models import MainSettings
 
 
-TELEGRAM_MESSAGE = lambda domain_name, phone_number: (
+TELEGRAM_MESSAGE = lambda domain_name, phone_number, ip_data: (
     f"<b>Получена новая заявка!</b>\n"
     f"<b>Веб-сайт:</b> <code>{domain_name}</code>\n"
-    f"<b>Телефон:</b> <code>{phone_number}</code>"
+    f"<b>Телефон:</b> <code>{phone_number}</code>\n"
+    f"<b>Адрес:</b> <code>{ip_data['country']}, {ip_data['regionName']} ({ip_data['region']}), {ip_data['city']}</code>\n"
+    f"<b>Timezone:</b> <code>{ip_data['timezone']}</code>\n"
+    f"<b>Организация:</b> <code>{ip_data['org']}</code>\n"
 )
 
 
@@ -35,13 +40,21 @@ class ContactSubmit(APIView):
         if not settings_safe:
             return Response({'error': 'Неизвестная ошибка. [ER2]'}, status=status.HTTP_400_BAD_REQUEST)
 
+        ip_data = get_ip_location(ip_address)
+
         domain_name = settings.site_domain
         telegram_token = settings.telegram_token
         telegram_group = settings.telegram_group
 
+        message = TELEGRAM_MESSAGE(
+            domain_name=domain_name,
+            phone_number=phone_number,
+            ip_data=ip_data
+        )
+
         telegram_send = requests.get(
             f"https://api.telegram.org/bot{telegram_token}/sendMessage?"
-            f"chat_id={telegram_group}&text={TELEGRAM_MESSAGE(domain_name, phone_number)}&parse_mode=html"
+            f"chat_id={telegram_group}&text={message}&parse_mode=html"
         )
 
         if telegram_send.status_code != 200:
