@@ -3,12 +3,11 @@ version: '3.8'
 services:
   web:
     build:
-      context: .
-      dockerfile: Dockerfile.dev
+      context: ../..
+      dockerfile: deployment/dev/Dockerfile.dev
     volumes:
       - ./../..:/app
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=main.settings.dev
-    command: python manage.py runserver 0.0.0.0:8000
+      - DJANGO_SETTINGS_MODULE>=main.settings.dev
