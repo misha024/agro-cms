@@ -1,4 +1,5 @@
 import requests
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -19,6 +20,8 @@ TELEGRAM_MESSAGE = lambda domain_name, phone_number, ip_data: (
 
 
 class ContactSubmit(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         ip_address = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
         if not ip_address:
